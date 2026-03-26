@@ -115,6 +115,11 @@
             width: 100%;
             box-sizing: border-box;
         }
+        /* Дополнительный класс для выделения красным текста */
+        .highlight-red {
+            color: #c71585;
+            font-family: Arial, Helvetica, sans-serif;
+        }
     </style>
 </head>
 <body topmargin="0" marginheight="0" marginwidth="0" bgcolor="#4b0082" background="books.jpg">
@@ -123,14 +128,14 @@
     <!-- Шапка сайта: логотип/заставка (структура без изображения) -->
     <table width="1000" border="0" bgcolor="#dddddd" background="retrolib_test_files/1_002.gif" style="background-image: url('retrolib_test_files/1_002.gif');">
         <tbody>
-             <tr>
+              <tr>
                 <td align="center">
                     <!-- Заглушка вместо изображения zast.jpg — сохраняем структуру -->
                     <div style="width:677px; height:64px; background-color: #cccccc; text-align:center; line-height:64px; color:#333;">[Логотип]</div>
-                 </td>
-             </tr>
+                  </td>
+              </tr>
         </tbody>
-     </table>
+      </table>
 
     <!-- Навигационное меню: точная копия структуры, все ссылки-заглушки -->
     <table border="3" width="1000" cellspacing="0" cellpadding="3" bgcolor="#dddddd" class="nav-bar">
@@ -150,7 +155,7 @@
                 <td width="20%"><a href="#">Инструкции и Техописания</a></td>
             </tr>
         </tbody>
-     </table>
+      </table>
 
     <!-- Декоративная полка -->
     <table width="1000" border="0" cellspacing="0" cellpadding="0" bgcolor="#dddddd">
@@ -159,9 +164,9 @@
                 <td><div style="width:1000px; height:64px; background-color: #bbaa77; text-align:center; line-height:64px;">[полка]</div></td>
             </tr>
         </tbody>
-     </table>
+      </table>
 
-    <!-- Основной блок: вступление (контейнер без текста) -->
+    <!-- Основной блок: вступление (текст добавлен) -->
     <table width="1000" cellspacing="0" cellpadding="3" bgcolor="#dddddd" background="retrolib_test_files/1_002.gif">
         <tbody>
             <tr>
@@ -169,21 +174,37 @@
             </tr>
             <tr>
                 <td valign="top" align="left" bgcolor="#dddddd">
-                    <!-- Контент вступления полностью удалён, оставлен только структурный блок -->
-                    <div style="min-height: 60px;"></div>
+                    <!-- Добавленный текст вступления -->
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Мне всегда нравились старые, сильно потрёпанные книжки. 
+                    Потрёпанность книги говорит о её высокой востребованности, а старость о вечно ценном 
+                    содержании. Всё сказанное в большей степени касается именно технической литературы. Только 
+                    техническая литература содержит в себе ту великую и полезную информацию, которая неподвластна 
+                    ни политическим веяниям, ни моде, ни настроениям! Только техническая литература 
+                    требует от своего автора поистине великих усилий и знаний. Порой требуется опыт целой 
+                    жизни, чтобы написать небольшую и внешне невзрачную книгу.<br> 
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;К сожалению ни что не вечно в этом мире, книги 
+                    треплются, разваливаются на отдельные листы, которые затем рвутся в клочья и уходят в 
+                    никуда. Плюс ко всему орды варваров, которым без разницы, что бросить в костёр или чем 
+                    вытереть свой зад. Именно их мы можем благодарить за сожженные и растоптанные библиотеки.<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="highlight-red">
+                    Если у Вас есть старая книга или журнал, то не дайте им умереть, отсканируйте их и 
+                    пришлите мне. Совместными усилиями мы можем создать поистине уникальное и ценное собрание 
+                    старых технических книг и журналов.</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;По умолчанию, старыми считаются книги и журналы 
+                    изданные до 1991 года!<br>
                     <hr>
                     <div style="text-align:center;">
                         <!-- Архив необработанных сканов (заглушка) -->
                         <span style="font-size: larger;">[Архив необработанных сканов]</span>
                     </div>
                     <hr>
-                    <div><i>Активные корреспонденты сайта:</i><br> [список удалён]</div>
+                    <div><i>Активные корреспонденты сайта:</i><br></div>
                     <hr>
                     <div>Внимание! Для просмотра DJVU в среде браузера нужно установить DjVu Viewer.</div>
-                 </td>
+                </td>
             </tr>
         </tbody>
-     </table>
+      </table>
 
     <!-- Блок поиска: сохранена полная структура, но без активных скриптов и предзаполненного текста -->
     <table width="1000" cellspacing="0" cellpadding="3" bgcolor="#dddddd" background="retrolib_test_files/1_002.gif">
@@ -207,28 +228,28 @@
                                                                             <div class="ya-site-form__input">
                                                                                 <input name="text" type="search" value="" class="ya-site-form__input-text" autocomplete="off" placeholder="Поиск...">
                                                                             </div>
-                                                                         </td>
+                                                                          </td>
                                                                         <td class="ya-site-form__search-input-layout-r">
                                                                             <input class="ya-site-form__submit" type="button" value="Найти">
-                                                                         </td>
+                                                                          </td>
                                                                     </tr>
                                                                 </tbody>
-                                                             </table>
-                                                         </td>
+                                                              </table>
+                                                          </td>
                                                         <td class="ya-site-form__gap"><div class="ya-site-form__gap-i"></div></td>
                                                     </tr>
                                                 </tbody>
-                                             </table>
-                                         </td>
+                                              </table>
+                                          </td>
                                     </tr>
                                 </tbody>
-                             </table>
+                              </table>
                         </div>
                     </div>
-                 </td>
+                  </td>
             </tr>
         </tbody>
-     </table>
+      </table>
 
     <!-- Нижняя информационная панель: новости сайта, копирайт, навигация по архивам (структура без контента) -->
     <table width="1000" cellspacing="0" cellpadding="3" bgcolor="#dddddd" background="retrolib_test_files/1_002.gif">
@@ -241,7 +262,7 @@
                 <td width="24%" align="center">©2006 <a href="#">Архивариус</a></td>
             </tr>
         </tbody>
-     </table>
+      </table>
 
     <!-- Блок новостей (структура с сохранённым текстом из исходного файла, новогоднее изображение удалено) -->
     <table width="1000" cellspacing="0" cellpadding="3" bgcolor="#dddddd" background="retrolib_test_files/1.gif">
@@ -348,7 +369,7 @@
                 </td>
             </tr>
         </tbody>
-     </table>
+      </table>
 
     <!-- Архив новостей: ссылки-заглушки -->
     <table width="1000" cellspacing="0" cellpadding="3" bgcolor="#dddddd" background="retrolib_test_files/1_002.gif" class="archive-links">
@@ -359,7 +380,7 @@
                 </td>
             </tr>
         </tbody>
-     </table>
+      </table>
 
     <!-- Футер: счётчик (заглушка) -->
     <table width="1000" cellspacing="0" cellpadding="3" bgcolor="#dddddd" background="retrolib_test_files/1_002.gif">
@@ -370,7 +391,7 @@
                 </td>
             </tr>
         </tbody>
-     </table>
+      </table>
 </center>
 
 <!-- Скрытые спам-ссылки (структура оставлена, но содержимое заменено на пустые заглушки) -->
