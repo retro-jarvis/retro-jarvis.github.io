@@ -4,25 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Библиотека ретро-литературы | Шаблон</title>
-    <!-- Базовые мета-теги (без контента) -->
     <meta name="author" content="">
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <!-- Стили — максимально приближены к оригиналу, но с заменой фона -->
     <style type="text/css">
-        /* Общие стили и сбросы, как в исходном документе */
+        /* Общие стили и сбросы */
         body {
             margin: 0;
             padding: 0;
             background-color: #4b0082;
-            background-image: url('books.jpg');
+            background-image: url('./books.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
             font-family: 'Times New Roman', Times, serif;
         }
-        /* Сохраняем все оригинальные классы и структуру */
         table {
             border-collapse: collapse;
         }
@@ -36,78 +33,32 @@
         a:active {
             color: #008000;
         }
-        /* Центрирование основного контейнера */
         center {
             display: block;
             text-align: -webkit-center;
         }
-        /* Стили для таблиц, фонов, рамок — точная копия исходных */
-        .main-table {
+        .main-table, .content-table, .footer-bg {
             width: 1000px;
             background-color: #dddddd;
-            background-image: url('retrolib_test_files/1_002.gif');
-        }
-        .content-table {
-            width: 1000px;
-            background-color: #dddddd;
-            background-image: url('retrolib_test_files/1_002.gif');
-        }
-        .footer-bg {
-            background-color: #dddddd;
-            background-image: url('retrolib_test_files/1_002.gif');
-        }
-        /* Сохраняем все оригинальные inline-стили в классах */
-        .header-img {
-            text-align: center;
+            background-image: url('./1_002.gif');
         }
         .nav-bar {
             border: 3px solid #000000;
             width: 1000px;
             background-color: #dddddd;
         }
-        .polka-img {
-            width: 1000px;
-            height: 64px;
-        }
-        .news-section {
-            background-color: #dddddd;
-            background-image: url('retrolib_test_files/1_002.gif');
-        }
-        /* Дополнительные стили для сохранения внешнего вида */
-        hr {
-            border: 1px solid #ccc;
-            margin: 10px 0;
-        }
         .archive-links {
             background-color: #dddddd;
-            background-image: url('retrolib_test_files/1_002.gif');
+            background-image: url('./1_002.gif');
             padding: 3px;
         }
-        .footer-logo {
-            text-align: center;
-        }
-        /* Для корректного отображения структуры */
         td, th {
             vertical-align: top;
             padding: 3px;
         }
-        /* Стили для формы поиска (оставлена структура, но без скриптов и предзаполненного текста) */
         .ya-site-form {
             font-size: 12px;
         }
-        /* Сохраняем наследуемые стили */
-        b, strong {
-            font-weight: bold;
-        }
-        i, em {
-            font-style: italic;
-        }
-        /* Убираем возможные лишние отступы */
-        body, table, tr, td, div {
-            margin: 0;
-            padding: 0;
-        }
-        /* Оригинальные стили для поиска (сохранены для точности) */
         .ya-site-form__form {
             display: block;
         }
@@ -115,34 +66,39 @@
             width: 100%;
             box-sizing: border-box;
         }
-        /* Дополнительный класс для выделения красным текста */
         .highlight-red {
             color: #c71585;
             font-family: Arial, Helvetica, sans-serif;
         }
+        /* Стили для переключения контента */
+        .content-section {
+            display: block;
+        }
+        .hidden-section {
+            display: none;
+        }
     </style>
 </head>
-<body topmargin="0" marginheight="0" marginwidth="0" bgcolor="#4b0082" background="ground.jpg">
+<body topmargin="0" marginheight="0" marginwidth="0" bgcolor="#4b0082" background="./ground.jpg">
 
 <center>
-    <!-- Шапка сайта: логотип/заставка (структура без изображения) -->
-    <table width="1000" border="0" bgcolor="#dddddd" background="retrolib_test_files/1_002.gif" style="background-image: url('retrolib_test_files/1_002.gif');">
+    <!-- Шапка -->
+    <table width="1000" border="0" bgcolor="#dddddd" background="./1_002.gif" style="background-image: url('./1_002.gif');">
         <tbody>
-              <tr>
+            <tr>
                 <td align="center">
-                    <!-- Заглушка вместо изображения zast.jpg — сохраняем структуру -->
-                    <div style="width:677px; height:64px; background-color: #cccccc; text-align:center; line-height:64px; color:#333;">zast.jpg</div>
-                  </td>
-              </tr>
+                    <img src="./zast.jpg" width="677" height="64" alt="Заставка библиотеки">
+                 </td>
+             </tr>
         </tbody>
-      </table>
+    </table>
 
-    <!-- Навигационное меню: точная копия структуры, все ссылки-заглушки -->
+    <!-- Навигационное меню: добавлены ссылки для переключения -->
     <table border="3" width="1000" cellspacing="0" cellpadding="3" bgcolor="#dddddd" class="nav-bar">
         <tbody>
             <tr align="center">
-                <td width="20%"><b>Главная</b></td>
-                <td width="20%"><a href="#">Гостевая</a></td>
+                <td width="20%"><a href="javascript:void(0);" onclick="showMain();" style="font-weight:bold;">Главная</a></td>
+                <td width="20%"><a href="javascript:void(0);" onclick="showGuestbook();">Гостевая</a></td>
                 <td width="20%"><a href="#">Книги</a></td>
                 <td width="20%"><a href="#">Журналы</a></td>
                 <td width="20%"><a href="#">Разное</a></td>
@@ -155,104 +111,144 @@
                 <td width="20%"><a href="#">Инструкции и Техописания</a></td>
             </tr>
         </tbody>
-      </table>
+    </table>
 
     <!-- Декоративная полка -->
     <table width="1000" border="0" cellspacing="0" cellpadding="0" bgcolor="#dddddd">
         <tbody>
             <tr>
-                <td><div style="width:1000px; height:64px; background-color: #bbaa77; text-align:center; line-height:64px;">polka.jpg</div></td>
+                <td><img src="./polka.jpg" width="1000" height="64" alt="Декоративная полка"></td>
             </tr>
         </tbody>
-      </table>
+    </table>
 
-    <!-- Основной блок: вступление (текст добавлен) -->
-    <table width="1000" cellspacing="0" cellpadding="3" bgcolor="#dddddd" background="retrolib_test_files/1_002.gif">
-        <tbody>
-            <tr>
-                <th align="center">Небольшое вступление</th>
-            </tr>
-            <tr>
-                <td valign="top" align="left" bgcolor="#dddddd">
-                    <!-- Добавленный текст вступления -->
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Мне всегда нравились старые, сильно потрёпанные книжки. 
-                    Потрёпанность книги говорит о её высокой востребованности, а старость о вечно ценном 
-                    содержании. Всё сказанное в большей степени касается именно технической литературы. Только 
-                    техническая литература содержит в себе ту великую и полезную информацию, которая неподвластна 
-                    ни политическим веяниям, ни моде, ни настроениям! Только техническая литература 
-                    требует от своего автора поистине великих усилий и знаний. Порой требуется опыт целой 
-                    жизни, чтобы написать небольшую и внешне невзрачную книгу.<br> 
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;К сожалению ни что не вечно в этом мире, книги 
-                    треплются, разваливаются на отдельные листы, которые затем рвутся в клочья и уходят в 
-                    никуда. Плюс ко всему орды варваров, которым без разницы, что бросить в костёр или чем 
-                    вытереть свой зад. Именно их мы можем благодарить за сожженные и растоптанные библиотеки.<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="highlight-red">
-                    Если у Вас есть старая книга или журнал, то не дайте им умереть, отсканируйте их и 
-                    пришлите мне. Совместными усилиями мы можем создать поистине уникальное и ценное собрание 
-                    старых технических книг и журналов.</span><br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;По умолчанию, старыми считаются книги и журналы 
-                    изданные до 1991 года!<br>
-                    <hr>
-                    <div style="text-align:center;">
-                        <!-- Архив необработанных сканов (заглушка) -->
-                        <span style="font-size: larger;">[Архив необработанных сканов]</span>
-                    </div>
-                    <hr>
-                    <div><i>Активные корреспонденты сайта:</i><br></div>
-                    <hr>
-                    <div>Внимание! Для просмотра DJVU в среде браузера нужно установить DjVu Viewer.</div>
-                </td>
-            </tr>
-        </tbody>
-      </table>
-
-    <!-- Блок поиска: сохранена полная структура, но без активных скриптов и предзаполненного текста -->
-    <table width="1000" cellspacing="0" cellpadding="3" bgcolor="#dddddd" background="retrolib_test_files/1_002.gif">
-        <tbody>
-            <tr>
-                <td valign="top" align="left">
-                    <div class="ya-site-form ya-site-form_bg_transparent ya-site-form_logo_hint" data-bem="{&quot;action&quot;:&quot;#&quot;,&quot;arrow&quot;:false,&quot;bg&quot;:&quot;transparent&quot;,&quot;fontsize&quot;:12,&quot;fg&quot;:&quot;#000000&quot;,&quot;language&quot;:&quot;ru&quot;,&quot;logo&quot;:&quot;rb&quot;,&quot;publicname&quot;:&quot;Поиск по сайту&quot;,&quot;suggest&quot;:true,&quot;target&quot;:&quot;_blank&quot;,&quot;tld&quot;:&quot;ru&quot;,&quot;type&quot;:2,&quot;usebigdictionary&quot;:true,&quot;searchid&quot;:2711797,&quot;input_fg&quot;:&quot;#000000&quot;,&quot;input_bg&quot;:&quot;#ffffff&quot;,&quot;input_fontStyle&quot;:&quot;normal&quot;,&quot;input_fontWeight&quot;:&quot;normal&quot;,&quot;input_placeholder&quot;:null,&quot;input_placeholderColor&quot;:&quot;#000000&quot;,&quot;input_borderColor&quot;:&quot;#7f9db9&quot;}" id="ya-site-form0">
-                        <div class="ya-site-form__form">
-                            <table class="ya-site-form__wrap" cellpadding="0" cellspacing="0">
-                                <tbody>
-                                    <tr>
-                                        <td class="ya-site-form__search-wrap">
-                                            <table class="ya-site-form__search" cellpadding="0" cellspacing="0">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="ya-site-form__search-input">
-                                                            <table class="ya-site-form__search-input-layout">
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td class="ya-site-form__search-input-layout-l">
-                                                                            <div class="ya-site-form__input">
-                                                                                <input name="text" type="search" value="" class="ya-site-form__input-text" autocomplete="off" placeholder="Поиск...">
-                                                                            </div>
-                                                                          </td>
-                                                                        <td class="ya-site-form__search-input-layout-r">
-                                                                            <input class="ya-site-form__submit" type="button" value="Найти">
-                                                                          </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                              </table>
-                                                          </td>
-                                                        <td class="ya-site-form__gap"><div class="ya-site-form__gap-i"></div></td>
-                                                    </tr>
-                                                </tbody>
-                                              </table>
-                                          </td>
-                                    </tr>
-                                </tbody>
-                              </table>
+    <!-- ========== ОСНОВНОЙ КОНТЕНТ (Главная) ========== -->
+    <div id="mainContent" class="content-section">
+        <!-- Вступление -->
+        <table width="1000" cellspacing="0" cellpadding="3" bgcolor="#dddddd" background="./1_002.gif">
+            <tbody>
+                <tr>
+                    <th align="center">Небольшое вступление</th>
+                </tr>
+                <tr>
+                    <td valign="top" align="left" bgcolor="#dddddd">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Мне всегда нравились старые, сильно потрёпанные книжки. 
+                        Потрёпанность книги говорит о её высокой востребованности, а старость о вечно ценном 
+                        содержании. Всё сказанное в большей степени касается именно технической литературы. Только 
+                        техническая литература содержит в себе ту великую и полезную информацию, которая неподвластна 
+                        ни политическим веяниям, ни моде, ни настроениям! Только техническая литература 
+                        требует от своего автора поистине великих усилий и знаний. Порой требуется опыт целой 
+                        жизни, чтобы написать небольшую и внешне невзрачную книгу.<br> 
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;К сожалению ни что не вечно в этом мире, книги 
+                        треплются, разваливаются на отдельные листы, которые затем рвутся в клочья и уходят в 
+                        никуда. Плюс ко всему орды варваров, которым без разницы, что бросить в костёр или чем 
+                        вытереть свой зад. Именно их мы можем благодарить за сожженные и растоптанные библиотеки.<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="highlight-red">
+                        Если у Вас есть старая книга или журнал, то не дайте им умереть, отсканируйте их и 
+                        пришлите мне. Совместными усилиями мы можем создать поистине уникальное и ценное собрание 
+                        старых технических книг и журналов.</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;По умолчанию, старыми считаются книги и журналы 
+                        изданные до 1991 года!<br>
+                        <hr>
+                        <div style="text-align:center;">
+                            <span style="font-size: larger;">[Архив необработанных сканов]</span>
                         </div>
-                    </div>
-                  </td>
-            </tr>
-        </tbody>
-      </table>
+                        <hr>
+                        <div><i>Активные корреспонденты сайта:</i><br></div>
+                        <hr>
+                        <div>Внимание! Для просмотра DJVU в среде браузера нужно установить DjVu Viewer.</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-    <!-- Нижняя информационная панель: новости сайта, копирайт, навигация по архивам (структура без контента) -->
-    <table width="1000" cellspacing="0" cellpadding="3" bgcolor="#dddddd" background="retrolib_test_files/1_002.gif">
+        <!-- Блок поиска -->
+        <table width="1000" cellspacing="0" cellpadding="3" bgcolor="#dddddd" background="./1_002.gif">
+            <tbody>
+                <tr>
+                    <td valign="top" align="left">
+                        <div class="ya-site-form ya-site-form_bg_transparent ya-site-form_logo_hint" data-bem="{&quot;action&quot;:&quot;#&quot;,&quot;arrow&quot;:false,&quot;bg&quot;:&quot;transparent&quot;,&quot;fontsize&quot;:12,&quot;fg&quot;:&quot;#000000&quot;,&quot;language&quot;:&quot;ru&quot;,&quot;logo&quot;:&quot;rb&quot;,&quot;publicname&quot;:&quot;Поиск по сайту&quot;,&quot;suggest&quot;:true,&quot;target&quot;:&quot;_blank&quot;,&quot;tld&quot;:&quot;ru&quot;,&quot;type&quot;:2,&quot;usebigdictionary&quot;:true,&quot;searchid&quot;:2711797,&quot;input_fg&quot;:&quot;#000000&quot;,&quot;input_bg&quot;:&quot;#ffffff&quot;,&quot;input_fontStyle&quot;:&quot;normal&quot;,&quot;input_fontWeight&quot;:&quot;normal&quot;,&quot;input_placeholder&quot;:null,&quot;input_placeholderColor&quot;:&quot;#000000&quot;,&quot;input_borderColor&quot;:&quot;#7f9db9&quot;}" id="ya-site-form0">
+                            <div class="ya-site-form__form">
+                                <table class="ya-site-form__wrap" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                        <tr>
+                                            <td class="ya-site-form__search-wrap">
+                                                <table class="ya-site-form__search" cellpadding="0" cellspacing="0">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="ya-site-form__search-input">
+                                                                <table class="ya-site-form__search-input-layout">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="ya-site-form__search-input-layout-l">
+                                                                                <div class="ya-site-form__input">
+                                                                                    <input name="text" type="search" value="" class="ya-site-form__input-text" autocomplete="off" placeholder="Поиск...">
+                                                                                </div>
+                                                                            </td>
+                                                                            <td class="ya-site-form__search-input-layout-r">
+                                                                                <input class="ya-site-form__submit" type="button" value="Найти">
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                            <td class="ya-site-form__gap"><div class="ya-site-form__gap-i"></div></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Нижняя информационная панель (повторяется, но она будет общая для всех вкладок, поэтому оставим здесь и в гостевой дублировать не надо) 
+        Но чтобы структура была правильной, панель "Новости сайта" и всё, что ниже, будет общим для обеих вкладок. Поэтому вынесем их после контейнера mainContent и guestbookContent -->
+    </div>
+
+    <!-- ========== ГОСТЕВАЯ КНИГА (скрыта по умолчанию) ========== -->
+    <div id="guestbookContent" class="hidden-section">
+        <table width="1000" cellspacing="0" cellpadding="3" bgcolor="#dddddd" background="./1_002.gif">
+            <tbody>
+                <tr>
+                    <th align="center" style="font-family:'Times New Roman', Times, serif;">Гостевая книга</th>
+                </tr>
+                <tr>
+                    <td valign="top" align="left" bgcolor="#dddddd" style="font-family:'Times New Roman', Times, serif; color:#000000;">
+                        <div><b>Иван Петров</b> <i>(15 марта 2025)</i>:</div>
+                        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Отличный сайт! Спасибо за сохранённые книги. Особенно радуют издания по электротехнике и физике. Обязательно отсканирую несколько старых журналов из домашней коллекции и пришлю.</div>
+                        <br>
+                        <div><b>Анна Смирнова</b> <i>(12 марта 2025)</i>:</div>
+                        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Огромная благодарность за подборку «Химия для любознательных»! Давно искала эту книгу. Оформление сайта напоминает старые добрые библиотечные каталоги. Удачи в развитии проекта.</div>
+                        <br>
+                        <div><b>Сергей Тихонов</b> <i>(8 марта 2025)</i>:</div>
+                        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Прекрасная идея — собрать техническую литературу до 1991 года. У меня есть несколько книг по радиотехнике 80-х, готов поделиться сканами. Может быть, добавите раздел «Редкие инструкции»?</div>
+                        <br>
+                        <div><b>Алексей Кубов</b> <i>(1 марта 2025)</i>:</div>
+                        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Спасибо за книги по программированию! Форт, Паскаль, Бейсик — это ностальгия. Надеюсь, архив будет пополняться. Гостевая книга — отличный способ общения.</div>
+                        <br>
+                        <hr>
+                        <div><b>Оставить запись в гостевой книге:</b></div>
+                        <form action="#" method="post" style="margin-top: 8px;">
+                            <div>Ваше имя: <input type="text" name="guest_name" size="35" style="font-family:'Times New Roman', Times, serif;"></div>
+                            <div style="margin-top: 6px;">Сообщение:<br><textarea name="guest_message" rows="4" cols="65" style="font-family:'Times New Roman', Times, serif;"></textarea></div>
+                            <div style="margin-top: 6px;"><input type="submit" value="Отправить"></div>
+                        </form>
+                        <div><i>Примечание: форма демонстрационная, для реальной отправки требуется серверная часть.</i></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Общие элементы (новости, архив, счётчик) - они видны всегда, но после контента -->
+    <!-- Панель "Новости сайта" -->
+    <table width="1000" cellspacing="0" cellpadding="3" bgcolor="#dddddd" background="./1_002.gif">
         <tbody>
             <tr>
                 <td width="28%" align="center"><font size="5"><b>Новости сайта</b></font></td>
@@ -262,12 +258,12 @@
                 <td width="24%" align="center">©2006 <a href="#">Архивариус</a></td>
             </tr>
         </tbody>
-      </table>
+    </table>
 
-    <!-- Блок новостей (структура с сохранённым текстом из исходного файла, новогоднее изображение удалено) -->
-    <table width="1000" cellspacing="0" cellpadding="3" bgcolor="#dddddd" background="retrolib_test_files/1.gif">
+    <!-- Блок новостей (полный) -->
+    <table width="1000" cellspacing="0" cellpadding="3" bgcolor="#dddddd" background="./1.gif">
         <tbody>
-            <!-- Новость 10 Марта 2025 года - сохранён текст из оригинального файла -->
+            <!-- 10 марта 2025 -->
             <tr>
                 <td valign="top" align="left" bgcolor="#dddddd">
                     <div align="center"><b>10 Марта 2025 года</b></div><br>
@@ -297,8 +293,7 @@
                     <hr></i>
                 </td>
             </tr>
-            
-            <!-- Новость 29 декабря 2024 — новогоднее изображение удалено, текст из исходного файла сохранён -->
+            <!-- 29 декабря 2024 -->
             <tr>
                 <td valign="top" align="left" bgcolor="#dddddd">
                     <div align="center"><b>29 декабря 2024 года</b></div><br>
@@ -333,8 +328,7 @@
                     <hr></i>
                 </td>
             </tr>
-            
-            <!-- Новость 10 Декабря 2024 — текст из исходного файла сохранён -->
+            <!-- 10 декабря 2024 -->
             <tr>
                 <td valign="top" align="left" bgcolor="#dddddd">
                     <div align="center"><b>10 Декабря 2024 года</b></div><br>
@@ -350,8 +344,7 @@
                     <hr></i>
                 </td>
             </tr>
-            
-            <!-- Новость 3 Марта 2024 — текст из исходного файла сохранён -->
+            <!-- 3 марта 2024 -->
             <tr>
                 <td valign="top" align="left" bgcolor="#dddddd">
                     <div align="center"><b>3 Марта 2024 года</b></div><br>
@@ -369,10 +362,10 @@
                 </td>
             </tr>
         </tbody>
-      </table>
+    </table>
 
-    <!-- Архив новостей: ссылки-заглушки -->
-    <table width="1000" cellspacing="0" cellpadding="3" bgcolor="#dddddd" background="retrolib_test_files/1_002.gif" class="archive-links">
+    <!-- Архив новостей -->
+    <table width="1000" cellspacing="0" cellpadding="3" bgcolor="#dddddd" background="./1_002.gif" class="archive-links">
         <tbody>
             <tr>
                 <td align="left">
@@ -380,21 +373,39 @@
                 </td>
             </tr>
         </tbody>
-      </table>
+    </table>
 
-    <!-- Футер: счётчик (заглушка) -->
-    <table width="1000" cellspacing="0" cellpadding="3" bgcolor="#dddddd" background="retrolib_test_files/1_002.gif">
+    <!-- Счётчик -->
+    <table width="1000" cellspacing="0" cellpadding="3" bgcolor="#dddddd" background="./1_002.gif">
         <tbody>
             <tr>
                 <td align="center">
-                    <div style="height:31px; width:88px; background-color:#ccc; display:inline-block; text-align:center; line-height:31px;">counter.gif</div>
+                    <img src="./counter.gif" width="88" height="31" alt="Счётчик посещений">
                 </td>
             </tr>
         </tbody>
-      </table>
+    </table>
 </center>
 
-<!-- Скрытые спам-ссылки (структура оставлена, но содержимое заменено на пустые заглушки) -->
+<script>
+    function showMain() {
+        document.getElementById('mainContent').classList.remove('hidden-section');
+        document.getElementById('mainContent').classList.add('content-section');
+        document.getElementById('guestbookContent').classList.remove('content-section');
+        document.getElementById('guestbookContent').classList.add('hidden-section');
+    }
+
+    function showGuestbook() {
+        document.getElementById('guestbookContent').classList.remove('hidden-section');
+        document.getElementById('guestbookContent').classList.add('content-section');
+        document.getElementById('mainContent').classList.remove('content-section');
+        document.getElementById('mainContent').classList.add('hidden-section');
+    }
+
+    // Устанавливаем начальное состояние: показываем главную, скрываем гостевую
+    showMain();
+</script>
+
 <b style="left:-1191; top:-9199; position:absolute; z-index:-420;"><!-- заглушка --></b>
 </body>
 </html>
