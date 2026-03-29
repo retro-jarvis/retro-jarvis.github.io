@@ -14,9 +14,9 @@
             padding: 0;
             background-color: #4b0082;
             background-image: url('./ground.jpg');
-            background-size: 25%;            /* уменьшаем линейные размеры в 4 раза → площадь в 16 раз */
-            background-repeat: repeat;       /* зацикливаем изображение по всей странице */
-            background-attachment: fixed;    /* фиксируем фон при прокрутке */
+            background-size: 20%;
+            background-repeat: repeat;
+            background-attachment: fixed;
             font-family: 'Times New Roman', Times, serif;
         }
         table {
@@ -76,6 +76,13 @@
         .hidden-section {
             display: none;
         }
+        /* Стиль для ответа нейросети в новостях */
+        .ai-answer {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 1em;
+            line-height: 1.4;
+            white-space: pre-wrap;
+        }
     </style>
 </head>
 <body topmargin="0" marginheight="0" marginwidth="0" bgcolor="#4b0082" background="./ground.jpg">
@@ -84,11 +91,11 @@
     <!-- Шапка -->
     <table width="1000" border="0" bgcolor="#dddddd" background="./1_002.gif" style="background-image: url('./1_002.gif');">
         <tbody>
-            <tr>
+            32r
                 <td align="center">
                     <img src="./zast.jpg" width="677" height="64" alt="Заставка библиотеки">
-                 </td>
-             </tr>
+                  </td>
+            </tr>
         </tbody>
     </table>
 
@@ -115,7 +122,7 @@
     <!-- Декоративная полка -->
     <table width="1000" border="0" cellspacing="0" cellpadding="0" bgcolor="#dddddd">
         <tbody>
-            <tr>
+            32r
                 <td><img src="./polka.jpg" width="1000" height="64" alt="Декоративная полка"></td>
             </tr>
         </tbody>
@@ -162,133 +169,51 @@
         </table>
 
         <!-- Блок поиска -->
-       <table width="1000" cellspacing="0" cellpadding="3" bgcolor="#dddddd" background="./1_002.gif">
-    <tbody>
-        <tr>
-            <td valign="top" align="left">
-                <div class="ya-site-form ya-site-form_bg_transparent ya-site-form_logo_hint" data-bem="{&quot;action&quot;:&quot;#&quot;,&quot;arrow&quot;:false,&quot;bg&quot;:&quot;transparent&quot;,&quot;fontsize&quot;:12,&quot;fg&quot;:&quot;#000000&quot;,&quot;language&quot;:&quot;ru&quot;,&quot;logo&quot;:&quot;rb&quot;,&quot;publicname&quot;:&quot;Поиск по сайту&quot;,&quot;suggest&quot;:true,&quot;target&quot;:&quot;_blank&quot;,&quot;tld&quot;:&quot;ru&quot;,&quot;type&quot;:2,&quot;usebigdictionary&quot;:true,&quot;searchid&quot;:2711797,&quot;input_fg&quot;:&quot;#000000&quot;,&quot;input_bg&quot;:&quot;#ffffff&quot;,&quot;input_fontStyle&quot;:&quot;normal&quot;,&quot;input_fontWeight&quot;:&quot;normal&quot;,&quot;input_placeholder&quot;:null,&quot;input_placeholderColor&quot;:&quot;#000000&quot;,&quot;input_borderColor&quot;:&quot;#7f9db9&quot;}" id="ya-site-form0">
-                    <div class="ya-site-form__form">
-                        <form id="vsegpt-search-form" onsubmit="event.preventDefault(); sendSearchRequest();">
-                            <table class="ya-site-form__wrap" cellpadding="0" cellspacing="0">
-                                <tbody>
-                                    <tr>
-                                        <td class="ya-site-form__search-wrap">
-                                            <table class="ya-site-form__search" cellpadding="0" cellspacing="0">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="ya-site-form__search-input">
-                                                            <table class="ya-site-form__search-input-layout">
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td class="ya-site-form__search-input-layout-l">
-                                                                            <div class="ya-site-form__input">
-                                                                                <input name="text" id="search-query" type="search" value="" class="ya-site-form__input-text" autocomplete="off" placeholder="Поиск...">
-                                                                            </div>
-                                                                        </td>
-                                                                        <td class="ya-site-form__search-input-layout-r">
-                                                                            <input class="ya-site-form__submit" type="submit" value="Найти">
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </td>
-                                                        <td class="ya-site-form__gap"><div class="ya-site-form__gap-i"></div></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </form>
-                    </div>
-                </div>
-                
-            </td>
-        </tr>
-    </tbody>
-</table>
-
-<script>
-    // Конфигурация VseGPT (замените на свои данные)
-    const VSEGPT_API_KEY = "sk-or-vv-0f81fe6900df9d5811c7ace60136eb2b27de5a71886bd87e0a06d628fdc48799"; // Ваш ключ
-    const VSEGPT_MODEL = "openai/gpt-4o-mini"; // Модель (можно изменить)
-    const API_BASE = "https://api.vsegpt.ru/v1";
-
-    // Параметры генерации
-    const TEMPERATURE = 0.7;
-    const MAX_TOKENS = 1000;
-    const TOP_P = 1.0;
-
-    // Функция отправки запроса к VseGPT
-    async function sendRequest(apiKey, modelId, prompt, temperature, maxTokens, topP) {
-        //if (!apiKey) throw new Error("API ключ не указан.");
-        //if (!prompt) throw new Error("Текст запроса пуст.");
-
-        const response = await fetch(API_BASE + "/chat/completions", {
-            method: "POST",
-            headers: {
-                "Authorization": "Bearer " + apiKey,
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                model: modelId,
-                messages: [{ role: "user", content: prompt }],
-                temperature: temperature,
-                max_tokens: maxTokens,
-                top_p: topP,
-                n: 1,
-                extra_headers: { "X-Title": "WebClient Demo" }
-            })
-        });
-
-        if (!response.ok) {
-            const errorText = await response.text();
-            throw new Error(`HTTP ${response.status}: ${errorText}`);
-        }
-
-        const data = await response.json();
-        return data.choices?.[0]?.message?.content || "(пустой ответ)";
-    }
-
-    // Обработчик отправки формы
-    async function sendSearchRequest() {
-        const queryInput = document.getElementById("search-query");
-        const resultDiv = document.getElementById("vsegpt-result");
-        const submitBtn = document.querySelector("#vsegpt-search-form input[type='submit']");
-
-        const query = queryInput.value.trim();
-        if (!query) {
-            resultDiv.textContent = "Введите текст запроса.";
-            return;
-        }
-
-        // Блокируем кнопку на время запроса
-        submitBtn.disabled = true;
-        submitBtn.value = "Отправка...";
-        resultDiv.textContent = "Поиск...";
-
-        try {
-            const answer = await sendRequest(
-                VSEGPT_API_KEY,
-                VSEGPT_MODEL,
-                query,
-                TEMPERATURE,
-                MAX_TOKENS,
-                TOP_P
-            );
-            resultDiv.textContent = "Ответ VseGPT:\n\n" + answer;
-        } catch (error) {
-            resultDiv.textContent = "Ошибка: " + error.message;
-        } finally {
-            submitBtn.disabled = false;
-            submitBtn.value = "Найти";
-        }
-    }
-</script>
-
-        <!-- Нижняя информационная панель (повторяется, но она будет общая для всех вкладок, поэтому оставим здесь и в гостевой дублировать не надо) 
-        Но чтобы структура была правильной, панель "Новости сайта" и всё, что ниже, будет общим для обеих вкладок. Поэтому вынесем их после контейнера mainContent и guestbookContent -->
+        <table width="1000" cellspacing="0" cellpadding="3" bgcolor="#dddddd" background="./1_002.gif">
+            <tbody>
+                <tr>
+                    <td valign="top" align="left">
+                        <div class="ya-site-form ya-site-form_bg_transparent ya-site-form_logo_hint" data-bem="{&quot;action&quot;:&quot;#&quot;,&quot;arrow&quot;:false,&quot;bg&quot;:&quot;transparent&quot;,&quot;fontsize&quot;:12,&quot;fg&quot;:&quot;#000000&quot;,&quot;language&quot;:&quot;ru&quot;,&quot;logo&quot;:&quot;rb&quot;,&quot;publicname&quot;:&quot;Поиск по сайту&quot;,&quot;suggest&quot;:true,&quot;target&quot;:&quot;_blank&quot;,&quot;tld&quot;:&quot;ru&quot;,&quot;type&quot;:2,&quot;usebigdictionary&quot;:true,&quot;searchid&quot;:2711797,&quot;input_fg&quot;:&quot;#000000&quot;,&quot;input_bg&quot;:&quot;#ffffff&quot;,&quot;input_fontStyle&quot;:&quot;normal&quot;,&quot;input_fontWeight&quot;:&quot;normal&quot;,&quot;input_placeholder&quot;:null,&quot;input_placeholderColor&quot;:&quot;#000000&quot;,&quot;input_borderColor&quot;:&quot;#7f9db9&quot;}" id="ya-site-form0">
+                            <div class="ya-site-form__form">
+                                <form id="vsegpt-search-form" onsubmit="event.preventDefault(); sendSearchRequest();">
+                                    <table class="ya-site-form__wrap" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="ya-site-form__search-wrap">
+                                                    <table class="ya-site-form__search" cellpadding="0" cellspacing="0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="ya-site-form__search-input">
+                                                                    <table class="ya-site-form__search-input-layout">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td class="ya-site-form__search-input-layout-l">
+                                                                                    <div class="ya-site-form__input">
+                                                                                        <input name="text" id="search-query" type="search" value="" class="ya-site-form__input-text" autocomplete="off" placeholder="Поиск...">
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td class="ya-site-form__search-input-layout-r">
+                                                                                    <input class="ya-site-form__submit" type="submit" value="Найти">
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                                <td class="ya-site-form__gap"><div class="ya-site-form__gap-i"></div></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </form>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
     <!-- ========== ГОСТЕВАЯ КНИГА (скрыта по умолчанию) ========== -->
@@ -326,7 +251,6 @@
         </table>
     </div>
 
-    <!-- Общие элементы (новости, архив, счётчик) - они видны всегда, но после контента -->
     <!-- Панель "Новости сайта" -->
     <table width="1000" cellspacing="0" cellpadding="3" bgcolor="#dddddd" background="./1_002.gif">
         <tbody>
@@ -340,8 +264,8 @@
         </tbody>
     </table>
 
-    <!-- Блок новостей (полный) -->
-    <table width="1000" cellspacing="0" cellpadding="3" bgcolor="#dddddd" background="./1.gif">
+    <!-- Блок новостей (полный) – добавлен id для замены содержимого -->
+    <table width="1000" cellspacing="0" cellpadding="3" bgcolor="#dddddd" background="./1.gif" id="newsContentTable">
         <tbody>
             <!-- 10 марта 2025 -->
             <tr>
@@ -468,6 +392,98 @@
 </center>
 
 <script>
+    // Конфигурация VseGPT (замените на свои данные)
+    const VSEGPT_API_KEY = "sk-or-vv-0f81fe6900df9d5811c7ace60136eb2b27de5a71886bd87e0a06d628fdc48799";
+    const VSEGPT_MODEL = "openai/gpt-4o-mini";
+    const API_BASE = "https://api.vsegpt.ru/v1";
+
+    const TEMPERATURE = 0.7;
+    const MAX_TOKENS = 1000;
+    const TOP_P = 1.0;
+
+    // Функция отправки запроса к VseGPT
+    async function sendRequest(apiKey, modelId, prompt, temperature, maxTokens, topP) {
+        const response = await fetch(API_BASE + "/chat/completions", {
+            method: "POST",
+            headers: {
+                "Authorization": "Bearer " + apiKey,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                model: modelId,
+                messages: [{ role: "user", content: prompt }],
+                temperature: temperature,
+                max_tokens: maxTokens,
+                top_p: topP,
+                n: 1,
+                extra_headers: { "X-Title": "WebClient Demo" }
+            })
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`HTTP ${response.status}: ${errorText}`);
+        }
+
+        const data = await response.json();
+        return data.choices?.[0]?.message?.content || "(пустой ответ)";
+    }
+
+    // Обработчик отправки формы – заменяет содержимое раздела "Новости сайта" ответом нейросети
+    async function sendSearchRequest() {
+        const queryInput = document.getElementById("search-query");
+        const newsTable = document.getElementById("newsContentTable");
+        const submitBtn = document.querySelector("#vsegpt-search-form input[type='submit']");
+
+        const query = queryInput.value.trim();
+        if (!query) {
+            // Если запрос пустой, показываем сообщение в новостях
+            if (newsTable) {
+                newsTable.innerHTML = `<tbody><tr><td valign="top" align="left" bgcolor="#dddddd" class="ai-answer">
+                    <b>Введите текст запроса.</b>
+                </td></tr></tbody>`;
+            }
+            return;
+        }
+
+        // Блокируем кнопку на время запроса
+        submitBtn.disabled = true;
+        submitBtn.value = "Отправка...";
+        if (newsTable) {
+            newsTable.innerHTML = `<tbody><tr><td valign="top" align="left" bgcolor="#dddddd" class="ai-answer">
+                <i>Поиск... Пожалуйста, подождите.</i>
+            </td></tr></tbody>`;
+        }
+
+        try {
+            const answer = await sendRequest(
+                VSEGPT_API_KEY,
+                VSEGPT_MODEL,
+                query,
+                TEMPERATURE,
+                MAX_TOKENS,
+                TOP_P
+            );
+            // Формируем HTML для ответа, сохраняя стиль раздела новостей
+            const answerHtml = `<tbody><tr><td valign="top" align="left" bgcolor="#dddddd" class="ai-answer">
+                <div align="center"><b>Ответ нейросети</b></div><br>
+                ${answer.replace(/\n/g, '<br>')}
+                <hr>
+                <i>Ответ сгенерирован искусственным интеллектом на основе вашего запроса.</i>
+            </td></tr></tbody>`;
+            if (newsTable) newsTable.innerHTML = answerHtml;
+        } catch (error) {
+            if (newsTable) {
+                newsTable.innerHTML = `<tbody><tr><td valign="top" align="left" bgcolor="#dddddd" class="ai-answer">
+                    <b>Ошибка:</b> ${error.message}
+                </td></tr></tbody>`;
+            }
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.value = "Найти";
+        }
+    }
+
     function showMain() {
         document.getElementById('mainContent').classList.remove('hidden-section');
         document.getElementById('mainContent').classList.add('content-section');
