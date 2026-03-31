@@ -81,6 +81,15 @@
             line-height: 1.4;
             white-space: pre-wrap;
         }
+        .image-preview {
+            margin-top: 5px;
+            font-size: 11px;
+            color: #666;
+        }
+        /* Скрытый индикатор загрузки файла - не меняет дизайн */
+        #image-upload {
+            display: none;
+        }
     </style>
 </head>
 <body topmargin="0" marginheight="0" marginwidth="0" bgcolor="#4b0082" background="./ground.jpg">
@@ -106,23 +115,23 @@
                 <td width="20%"><a href="#">Книги</a></td>
                 <td width="20%"><a href="#">Журналы</a></td>
                 <td width="20%"><a href="#">Разное</a></td>
-            </tr>
+             </tr>
             <tr align="center">
                 <td width="20%"><a href="#">Ссылки</a></td>
                 <td width="20%"><a href="#">Форум</a></td>
                 <td width="20%"><a href="#">Популяризаторы науки</a></td>
                 <td width="20%"><a href="#">Библиотеки</a></td>
                 <td width="20%"><a href="#">Инструкции и Техописания</a></td>
-             </tr>
+              </tr>
         </tbody>
      </table>
 
     <!-- Декоративная полка -->
     <table width="1000" border="0" cellspacing="0" cellpadding="0" bgcolor="#dddddd">
         <tbody>
-            32r
+            <tr>
                 <td><img src="./polka.jpg" width="1000" height="64" alt="Декоративная полка"></td>
-             </tr>
+              </tr>
         </tbody>
      </table>
 
@@ -133,7 +142,7 @@
             <tbody>
                 <tr>
                     <th align="center">Небольшое вступление</th>
-                 </tr>
+                  </tr>
                 <tr>
                     <td valign="top" align="left" bgcolor="#dddddd">
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Мне всегда нравились старые, сильно потрёпанные книжки. 
@@ -161,12 +170,12 @@
                         <div><i>Активные корреспонденты сайта:</i><br></div>
                         <hr>
                         <div>Внимание! Для просмотра DJVU в среде браузера нужно установить DjVu Viewer.</div>
-                     </td>
-                 </tr>
+                      </td>
+                  </tr>
             </tbody>
-         </table>
+        </table>
 
-        <!-- Блок поиска -->
+        <!-- Блок поиска (с поддержкой вставки изображений из буфера обмена) -->
         <table width="1000" cellspacing="0" cellpadding="3" bgcolor="#dddddd" background="./1_002.gif">
             <tbody>
                 <tr>
@@ -185,46 +194,48 @@
                                                                     <table class="ya-site-form__search-input-layout">
                                                                         <tbody>
                                                                             <tr>
-                                                                                <td class="ya-site-form__search-input-layout-l">
-                                                                                    <div class="ya-site-form__input">
+                                                                                <td class="ya-site-form__search-input-layout-l" style="width: 100%;">
+                                                                                    <div>
                                                                                         <input name="text" id="search-query" type="search" value="" class="ya-site-form__input-text" autocomplete="off" placeholder="Поиск...">
                                                                                     </div>
-                                                                                 </td>
+                                                                                    <input type="file" id="image-upload" accept="image/*">
+                                                                                </td>
                                                                                 <td class="ya-site-form__search-input-layout-r">
                                                                                     <input class="ya-site-form__submit" type="submit" value="Найти">
-                                                                                 </td>
-                                                                             </tr>
+                                                                                </td>
+                                                                            </tr>
                                                                         </tbody>
-                                                                     </table>
-                                                                 </td>
+                                                                    </table>
+                                                                </td>
                                                                 <td class="ya-site-form__gap"><div class="ya-site-form__gap-i"></div></td>
                                                              </tr>
                                                         </tbody>
-                                                     </table>
-                                                 </td>
-                                             </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
                                         </tbody>
-                                     </table>
+                                    </table>
                                 </form>
                             </div>
                         </div>
+                        <div id="image-preview" class="image-preview"></div>
                      </td>
                  </tr>
             </tbody>
-         </table>
+        </table>
 
         <!-- ===== НОВОСТИ САЙТА (ГЛАВНАЯ) – постоянные, не изменяемые API ===== -->
         <table width="1000" cellspacing="0" cellpadding="3" bgcolor="#dddddd" background="./1_002.gif">
             <tbody>
                 <tr>
                     <td width="28%" align="center"><font size="5"><b>Новости сайта</b></font></td>
-                    <td width="16%"></td>
-                    <td width="16%" align="center"></td>
-                    <td width="16%"></td>
+                    <td width="16%"> </td>
+                    <td width="16%" align="center"> </td>
+                    <td width="16%"> </td>
                     <td width="24%" align="center">©2006 <a href="#">Архивариус</a></td>
-                 </tr>
+                  </tr>
             </tbody>
-         </table>
+        </table>
         <table width="1000" cellspacing="0" cellpadding="3" bgcolor="#dddddd" background="./1.gif" id="mainNewsTable">
             <tbody>
                 <!-- Содержимое новостей главной страницы (постоянное) -->
@@ -256,7 +267,7 @@
                         </li></ul>
                         <hr></i>
                      </td>
-                 </tr>
+                  </tr>
                 <tr>
                     <td valign="top" align="left" bgcolor="#dddddd">
                         <div align="center"><b>29 декабря 2024 года</b></div><br>
@@ -290,7 +301,7 @@
                         </li></ul>
                         <hr></i>
                      </td>
-                 </tr>
+                  </tr>
                 <tr>
                     <td valign="top" align="left" bgcolor="#dddddd">
                         <div align="center"><b>10 Декабря 2024 года</b></div><br>
@@ -305,7 +316,7 @@
                         </li></ul>
                         <hr></i>
                      </td>
-                 </tr>
+                  </tr>
                 <tr>
                     <td valign="top" align="left" bgcolor="#dddddd">
                         <div align="center"><b>3 Марта 2024 года</b></div><br>
@@ -321,9 +332,9 @@
                         </li></ul>
                         <hr></i>
                      </td>
-                 </tr>
+                  </tr>
             </tbody>
-         </table>
+        </table>
     </div>
 
     <!-- ========== ГОСТЕВАЯ КНИГА (со своей новостной лентой, которую обновляет API) ========== -->
@@ -333,7 +344,7 @@
             <tbody>
                 <tr>
                     <th align="center" style="font-family:'Times New Roman', Times, serif;">Гостевая книга</th>
-                 </tr>
+                  </tr>
                 <tr>
                     <td valign="top" align="left" bgcolor="#dddddd" style="font-family:'Times New Roman', Times, serif; color:#000000;">
                         <div><b>Иван Петров</b> <i>(15 марта 2025)</i>:</div>
@@ -355,24 +366,23 @@
                             <div style="margin-top: 6px;">Сообщение:<br><textarea name="guest_message" rows="4" cols="65" style="font-family:'Times New Roman', Times, serif;"></textarea></div>
                             <div style="margin-top: 6px;"><input type="submit" value="Отправить"></div>
                         </form>
-                        <div><i>Примечание: форма демонстрационная, для реальной отправки требуется серверная часть.</i></div>
                      </td>
-                 </tr>
+                  </tr>
             </tbody>
-         </table>
+        </table>
 
         <!-- ===== НОВОСТИ САЙТА (ГОСТЕВАЯ) – обновляется API ===== -->
         <table width="1000" cellspacing="0" cellpadding="3" bgcolor="#dddddd" background="./1_002.gif">
             <tbody>
                 <tr>
                     <td width="28%" align="center"><font size="5"><b>Новости сайта</b></font></td>
-                    <td width="16%"></td>
-                    <td width="16%" align="center"></td>
-                    <td width="16%"></td>
+                    <td width="16%"> </td>
+                    <td width="16%" align="center"> </td>
+                    <td width="16%"> </td>
                     <td width="24%" align="center">©2006 <a href="#">Архивариус</a></td>
-                 </tr>
+                  </tr>
             </tbody>
-         </table>
+        </table>
         <table width="1000" cellspacing="0" cellpadding="3" bgcolor="#dddddd" background="./1.gif" id="guestbookNewsTable">
             <tbody>
                 <!-- Начальное содержимое новостей (скопировано с главной) -->
@@ -404,7 +414,7 @@
                         </li></ul>
                         <hr></i>
                      </td>
-                 </tr>
+                  </tr>
                 <tr>
                     <td valign="top" align="left" bgcolor="#dddddd">
                         <div align="center"><b>29 декабря 2024 года</b></div><br>
@@ -438,7 +448,7 @@
                         </li></ul>
                         <hr></i>
                      </td>
-                 </tr>
+                  </tr>
                 <tr>
                     <td valign="top" align="left" bgcolor="#dddddd">
                         <div align="center"><b>10 Декабря 2024 года</b></div><br>
@@ -453,7 +463,7 @@
                         </li></ul>
                         <hr></i>
                      </td>
-                 </tr>
+                  </tr>
                 <tr>
                     <td valign="top" align="left" bgcolor="#dddddd">
                         <div align="center"><b>3 Марта 2024 года</b></div><br>
@@ -469,9 +479,9 @@
                         </li></ul>
                         <hr></i>
                      </td>
-                 </tr>
+                  </tr>
             </tbody>
-         </table>
+        </table>
     </div>
 
     <!-- Архив новостей (глобальный) -->
@@ -498,13 +508,15 @@
 </center>
 
 <script>
-    // Конфигурация VseGPT (используем указанную модель)
+    // Конфигурация VseGPT
     const VSEGPT_API_KEY = "sk-or-vv-31703c5caaf1a52380d78e9bdeee2b810e1dd458d9995df9cf91bce9ae902737";
-    const VSEGPT_MODEL = "deepseek/deepseek-chat-3.1-alt-fast";  // Указанная модель
+    const VSEGPT_MODEL = "deepseek/deepseek-chat-3.1-alt-fast";
     const API_BASE = "https://api.vsegpt.ru/v1";
     const TEMPERATURE = 0.7;
     const MAX_TOKENS = 1000;
     const TOP_P = 1.0;
+
+    let currentImageBase64 = null;
 
     // Функция отправки запроса к VseGPT
     async function sendRequest(apiKey, modelId, prompt, temperature, maxTokens, topP) {
@@ -534,28 +546,162 @@
         return data.choices?.[0]?.message?.content || "(пустой ответ)";
     }
 
-    // Обработчик отправки формы – обновляет только новости в гостевой
+    // Функция распознавания текста с изображения через VseGPT
+    async function extractTextFromImage(base64Image) {
+        const prompt = "Пожалуйста, извлеки текст из этого изображения. Если на изображении есть текст, верни его в читаемом виде. Если текста нет, опиши что изображено кратко. Верни только извлеченную информацию без лишних комментариев.";
+        
+        const messages = [
+            {
+                role: "user",
+                content: [
+                    { type: "text", text: prompt },
+                    { type: "image_url", image_url: { url: base64Image } }
+                ]
+            }
+        ];
+        
+        const response = await fetch(API_BASE + "/chat/completions", {
+            method: "POST",
+            headers: {
+                "Authorization": "Bearer " + VSEGPT_API_KEY,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                model: "openai/gpt-4o-mini",
+                messages: messages,
+                temperature: TEMPERATURE,
+                max_tokens: MAX_TOKENS,
+                top_p: TOP_P,
+                n: 1
+            })
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`HTTP ${response.status}: ${errorText}`);
+        }
+
+        const data = await response.json();
+        return data.choices?.[0]?.message?.content || "(не удалось)";
+    }
+
+    // Обработка вставки из буфера обмена
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('search-query');
+        
+        if (searchInput) {
+            searchInput.addEventListener('paste', async function(event) {
+                const items = event.clipboardData.items;
+                
+                for (let i = 0; i < items.length; i++) {
+                    if (items[i].type.indexOf('image') !== -1) {
+                        event.preventDefault();
+                        
+                        const file = items[i].getAsFile();
+                        const previewDiv = document.getElementById('image-preview');
+                        previewDiv.innerHTML = '<i>Найти</i>';
+                        
+                        const reader = new FileReader();
+                        reader.onload = async function(e) {
+                            const base64Data = e.target.result;
+                            currentImageBase64 = base64Data;
+                            
+                            previewDiv.innerHTML = '<span>📷</span>';
+                            
+                            try {
+                                const recognizedText = await extractTextFromImage(base64Data);
+                                if (recognizedText && recognizedText !== "(не удалось)") {
+                                    // searchInput.value = recognizedText.substring(0, 500);
+                                    previewDiv.innerHTML = `<span>✅</span>`;
+                                } else {
+                                    previewDiv.innerHTML = '<span>⚠️</span>';
+                                }
+                            } catch (error) {
+                                previewDiv.innerHTML = `<span>❌</span>`;
+                                console.error('OCR error:', error);
+                            }
+                        };
+                        reader.readAsDataURL(file);
+                        break;
+                    }
+                }
+            });
+        }
+        
+        // Также поддерживаем загрузку файлов через input (скрытый, не меняет дизайн)
+        const imageUpload = document.getElementById('image-upload');
+        if (imageUpload) {
+            imageUpload.addEventListener('change', async function(event) {
+                const file = event.target.files[0];
+                if (!file) return;
+                
+                const previewDiv = document.getElementById('image-preview');
+                previewDiv.innerHTML = '<i>Обработка изображения...</i>';
+                
+                const reader = new FileReader();
+                reader.onload = async function(e) {
+                    const base64Data = e.target.result;
+                    currentImageBase64 = base64Data;
+                    
+                    previewDiv.innerHTML = `<span>📷 Загружено: ${file.name}</span>`;
+                    
+                    try {
+                        const recognizedText = await extractTextFromImage(base64Data);
+                        const queryInput = document.getElementById('search-query');
+                        if (recognizedText && recognizedText !== "(не удалось)") {
+                            queryInput.value = recognizedText.substring(0, 500);
+                            previewDiv.innerHTML = `<span>✅</span>`;
+                        } else {
+                            previewDiv.innerHTML = `<span>⚠️</span>`;
+                        }
+                    } catch (error) {
+                        previewDiv.innerHTML = `<span>❌</span>`;
+                        console.error('OCR error:', error);
+                    }
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+    });
+
+    // Обработчик отправки формы
     async function sendSearchRequest() {
         const queryInput = document.getElementById("search-query");
-        const guestbookNewsTable = document.getElementById("guestbookNewsTable");  // только гостевая новостная таблица
+        const guestbookNewsTable = document.getElementById("guestbookNewsTable");
         const submitBtn = document.querySelector("#vsegpt-search-form input[type='submit']");
 
-        const query = queryInput.value.trim();
+        let query = queryInput.value.trim();
+        
+        if (currentImageBase64 && !query) {
+            const previewDiv = document.getElementById('image-preview');
+            
+            try {
+                const recognizedText = await extractTextFromImage(currentImageBase64);
+                query = recognizedText;
+                previewDiv.innerHTML = '<span>✅</span>';
+            } catch (error) {
+                if (guestbookNewsTable) {
+                    guestbookNewsTable.innerHTML = `<tbody><tr><td valign="top" align="left" bgcolor="#dddddd" class="ai-answer">
+                    </td></tr></tbody>`;
+                }
+                submitBtn.disabled = false;
+                submitBtn.value = "Найти";
+                return;
+            }
+        }
+        
         if (!query) {
             if (guestbookNewsTable) {
                 guestbookNewsTable.innerHTML = `<tbody><tr><td valign="top" align="left" bgcolor="#dddddd" class="ai-answer">
-                    <b>Введите текст запроса.</b>
                 </td></tr></tbody>`;
             }
             return;
         }
 
-        // Блокируем кнопку на время запроса
         submitBtn.disabled = true;
         submitBtn.value = "Отправка...";
         if (guestbookNewsTable) {
             guestbookNewsTable.innerHTML = `<tbody><tr><td valign="top" align="left" bgcolor="#dddddd" class="ai-answer">
-                <i>Поиск... Пожалуйста, подождите.</i>
             </td></tr></tbody>`;
         }
 
@@ -569,10 +715,8 @@
                 TOP_P
             );
             const answerHtml = `<tbody><tr><td valign="top" align="left" bgcolor="#dddddd" class="ai-answer">
-                <div align="center"><b>Ответ нейросети (DraculaS)</b></div><br>
                 ${answer.replace(/\n/g, '<br>')}
                 <hr>
-                <i>Ответ сгенерирован искусственным интеллектом на основе вашего запроса.</i>
             </td></tr></tbody>`;
             if (guestbookNewsTable) guestbookNewsTable.innerHTML = answerHtml;
         } catch (error) {
@@ -601,7 +745,6 @@
         document.getElementById('mainContent').classList.add('hidden-section');
     }
 
-    // Начальное состояние: показываем главную, скрываем гостевую
     showMain();
 </script>
 
