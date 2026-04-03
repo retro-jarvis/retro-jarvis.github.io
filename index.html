@@ -578,7 +578,7 @@
                             try {
                                 // Показываем предпросмотр, но само распознавание будет при отправке
                                 // Здесь просто сохраняем изображение
-                                previewDiv.innerHTML = '<span>📷 Готово к распознаванию</span>';
+                                previewDiv.innerHTML = '<span>📷</span>';
                             } catch (error) {
                                 previewDiv.innerHTML = `<span>❌</span>`;
                                 console.error('OCR error:', error);
@@ -606,7 +606,7 @@
                     const base64Data = e.target.result;
                     currentImageBase64 = base64Data;
                     
-                    previewDiv.innerHTML = `<span>📷 Загружено: ${file.name}</span>`;
+                    previewDiv.innerHTML = `<span>📷</span>`;
                     
                     // При загрузке через input тоже не распознаём сразу, только при отправке
                 };
@@ -633,12 +633,12 @@
         // Если есть изображение и нет текста — распознаём выбранной моделью
         if (currentImageBase64 && !query) {
             const previewDiv = document.getElementById('image-preview');
-            previewDiv.innerHTML = '<span>⏳ Распознавание через ' + selectedModel + '...</span>';
+            previewDiv.innerHTML = '<span>⏳</span>';
             
             try {
                 const recognizedText = await extractTextFromImage(currentImageBase64, selectedModel);
                 query = recognizedText;
-                previewDiv.innerHTML = '<span>✅ Распознано</span>';
+                previewDiv.innerHTML = '<span>✅</span>';
             } catch (error) {
                 if (guestbookNewsTable) {
                     guestbookNewsTable.innerHTML = `<tbody><tr><td valign="top" align="left" bgcolor="#dddddd" class="ai-answer">Ошибка распознавания: ${error.message}</td></tr></tbody>`;
@@ -659,7 +659,7 @@
         submitBtn.disabled = true;
         submitBtn.value = "Отправка...";
         if (guestbookNewsTable) {
-            guestbookNewsTable.innerHTML = `<tbody><tr><td valign="top" align="left" bgcolor="#dddddd" class="ai-answer">⏳ Запрос к AI (${selectedModel})...</td></tr></tbody>`;
+            guestbookNewsTable.innerHTML = `<tbody><tr><td valign="top" align="left" bgcolor="#dddddd" class="ai-answer">⏳</td></tr></tbody>`;
         }
 
         try {
