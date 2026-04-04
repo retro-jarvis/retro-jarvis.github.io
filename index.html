@@ -147,7 +147,7 @@
                 <td width="20%"><a href="#">Популяризаторы науки</a></td>
                 <td width="20%"><a href="#">Библиотеки</a></td>
                 <td width="20%"><a href="#">Инструкции и Техописания</a></td>
-              </tr>
+               </tr>
         </tbody>
       </table>
 
@@ -446,7 +446,7 @@
                         </li></ul>
                         <hr></i>
                       </td>
-                   </td>
+                   </tr>
                    <!-- Остальные новости гостевой оставлены неизменными -->
             </tbody>
         </table>
@@ -513,8 +513,8 @@
         return data.choices?.[0]?.message?.content || "(пустой ответ)";
     }
 
-    // ИСПРАВЛЕННАЯ ФУНКЦИЯ: теперь принимает modelId и использует его
-    async function extractTextFromImage(base64Image, modelId) {
+    // Функция распознавания текста с изображения через VseGPT
+    async function extractTextFromImage(base64Image) {
         const prompt = "Пожалуйста, извлеки текст из этого изображения. Если на изображении есть текст, верни его в читаемом виде. Если текста нет, опиши что изображено кратко. Верни только извлеченную информацию без лишних комментариев.";
         
         const messages = [
@@ -534,7 +534,7 @@
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                model: modelId,  // <-- ИСПРАВЛЕНО: используем переданную модель
+                model: "openai/gpt-4o-mini",
                 messages: messages,
                 temperature: TEMPERATURE,
                 max_tokens: MAX_TOKENS,
@@ -576,9 +576,12 @@
                             previewDiv.innerHTML = '<span>📷</span>';
                             
                             try {
-                                // Показываем предпросмотр, но само распознавание будет при отправке
-                                // Здесь просто сохраняем изображение
-                                previewDiv.innerHTML = '<span>📷</span>';
+                                const recognizedText = await extractTextFromImage(base64Data);
+                                if (recognizedText && recognizedText !== "(не удалось)") {
+                                    previewDiv.innerHTML = `<span>✅</span>`;
+                                } else {
+                                    previewDiv.innerHTML = '<span>⚠️</span>';
+                                }
                             } catch (error) {
                                 previewDiv.innerHTML = `<span>❌</span>`;
                                 console.error('OCR error:', error);
@@ -606,16 +609,28 @@
                     const base64Data = e.target.result;
                     currentImageBase64 = base64Data;
                     
-                    previewDiv.innerHTML = `<span>📷</span>`;
+                    previewDiv.innerHTML = `<span>📷 Загружено: ${file.name}</span>`;
                     
-                    // При загрузке через input тоже не распознаём сразу, только при отправке
+                    try {
+                        const recognizedText = await extractTextFromImage(base64Data);
+                        const queryInput = document.getElementById('search-query');
+                        if (recognizedText && recognizedText !== "(не удалось)") {
+                            queryInput.value = recognizedText.substring(0, 500);
+                            previewDiv.innerHTML = `<span>✅</span>`;
+                        } else {
+                            previewDiv.innerHTML = `<span>⚠️</span>`;
+                        }
+                    } catch (error) {
+                        previewDiv.innerHTML = `<span>❌</span>`;
+                        console.error('OCR error:', error);
+                    }
                 };
                 reader.readAsDataURL(file);
             });
         }
     });
 
-    // ИСПРАВЛЕННЫЙ ОБРАБОТЧИК отправки формы — использует выбранную модель для OCR
+    // Обработчик отправки формы — динамически выбираем модель из выпадающего списка на главной
     async function sendSearchRequest() {
         const queryInput = document.getElementById("search-query");
         const guestbookNewsTable = document.getElementById("guestbookNewsTable");
@@ -623,25 +638,16 @@
 
         let query = queryInput.value.trim();
         
-        // Определяем выбранную модель
-        let selectedModel = "deepseek/deepseek-chat-3.1-alt-fast"; // по умолчанию
-        const modelSelect = document.getElementById('aiModelSelect');
-        if (modelSelect && modelSelect.value) {
-            selectedModel = modelSelect.value;
-        }
-        
-        // Если есть изображение и нет текста — распознаём выбранной моделью
         if (currentImageBase64 && !query) {
             const previewDiv = document.getElementById('image-preview');
-            previewDiv.innerHTML = '<span>⏳</span>';
             
             try {
-                const recognizedText = await extractTextFromImage(currentImageBase64, selectedModel);
+                const recognizedText = await extractTextFromImage(currentImageBase64);
                 query = recognizedText;
                 previewDiv.innerHTML = '<span>✅</span>';
             } catch (error) {
                 if (guestbookNewsTable) {
-                    guestbookNewsTable.innerHTML = `<tbody><tr><td valign="top" align="left" bgcolor="#dddddd" class="ai-answer">Ошибка распознавания: ${error.message}</td></tr></tbody>`;
+                    guestbookNewsTable.innerHTML = `<tbody><tr><td valign="top" align="left" bgcolor="#dddddd" class="ai-answer">Ошибка распознавания</td></tr></tbody>`;
                 }
                 submitBtn.disabled = false;
                 submitBtn.value = "Найти";
@@ -656,10 +662,17 @@
             return;
         }
 
+        // Определяем выбранную модель (только для главной, гостевая не трогается, но технически обновляет ту же таблицу)
+        let selectedModel = "deepseek/deepseek-chat-3.1-alt-fast"; // по умолчанию
+        const modelSelect = document.getElementById('aiModelSelect');
+        if (modelSelect && modelSelect.value) {
+            selectedModel = modelSelect.value;
+        }
+
         submitBtn.disabled = true;
         submitBtn.value = "Отправка...";
         if (guestbookNewsTable) {
-            guestbookNewsTable.innerHTML = `<tbody><tr><td valign="top" align="left" bgcolor="#dddddd" class="ai-answer">⏳</td></tr></tbody>`;
+            guestbookNewsTable.innerHTML = `<tbody><tr><td valign="top" align="left" bgcolor="#dddddd" class="ai-answer">⏳ Запрос к AI (${selectedModel})...</td></tr></tbody>`;
         }
 
         try {
